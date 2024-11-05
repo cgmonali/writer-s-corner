@@ -1,0 +1,47 @@
+
+{% extends 'base.html' %}
+
+
+{% block title %}Article Detail Page{% endblock %}
+
+{% block content %}
+<div class ="article-detail-container">
+
+ <div class = 'article-detail-content'>
+
+
+
+<h2>{{article.headline}}</h2>
+<div class="article-description">{{article.content}}</div>
+<div class="article-writers">
+{% for writer in article_writers %}
+    <div>{{ writer.writer.name }} - Role: {{ writer.role }}</div>
+    <a href='{% url "writer_detail" writer.writer.pk %}'> view full profile</a>
+{% endfor %}
+ </div>
+</div>
+ <div class = 'article-comments'>
+<h3>Leave a comment:</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ comment_form.as_p }}
+    <button type="submit">Post Comment</button>
+</form>
+
+<h3>Comments:</h3>
+{% for comment in comments %}
+<div class="commentid-{{forloop.counter}}" id="comment-{{comment.id}}">
+    <p>{{ comment.text }},,{{ comment.created_at }}</p>
+  
+        <!-- -- the url name used in url.py file should be used here for reverse matchin else 
+        NoReverseMatch exception will be raised -->
+
+        <input type="hidden" name="next" value="{{ request.path }}">
+         <button class="delete-btn" data-id='{{comment.id}}' data-url="{% url 'deleteComment' comment.id %}">delete</button>
+</div>
+
+{% endfor %}
+</div>
+   </div>
+{% endblock %}
+

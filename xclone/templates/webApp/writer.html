@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="writer-outer-container">
+    <div class="writer-heading-content">
+<h2>Writers</h2>
+
+<div class="writer-heading">here are our writers ,enthusiste,find their achievenment in each of their bio
+    you will be thrilled to get insights of all their achievements
+</div></div>
+{% for writer in writers %}
+    <div class="writer-container">
+        <div class="writer-image-container">
+        <img src={{writer.image.url}} alt=""></div>
+        <div class="writer-detailed-bio-container">
+        <h6>{{ writer.name }}</h6>
+        <div class="writer-description">{{ writer.bio|truncatechars:40 }}</div>
+        <a href='{% url "writer_detail" writer.pk %}'>view profile</a>
+</div>
+    </div>
+
+{%endfor %}
+</div>
+{% endblock %}

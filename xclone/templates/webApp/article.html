@@ -1,0 +1,35 @@
+
+{% extends 'base.html' %}
+<style>
+
+   .article-outer-container{
+    background-color: red;
+   } 
+</style>
+{% block title %}Article Page{% endblock %}
+
+{% block content %}
+<div class="hero-container">
+    <div class="hero-content">
+<h4>Welcome to the Writer's Corner Hub, a space where creativity thrives!</h4>
+<p>Explore a diverse range of articles crafted by talented writers from various genres, and discover fresh perspectives. Whether you're here to read, write, or connect, inspiration awaits with every click</p>
+    </div>
+</div>
+<!-- write for loop to display articles -->
+<section class="article-cards-section">   
+    <div class="article-container-heading">
+        Explore Latest Stories
+    </div>
+
+<div class="articles-container">
+ 
+{% for article in articles %}
+{% include 'webApp/article_card.html' with article=article %}
+{% endfor %}
+</div>
+</section>
+{% endblock %}
+
+
+
+<link rel="stylesheet" href="article.css">

@@ -1,0 +1,21 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+    <div class="writer-detail-container">
+        <div class="writer-detail-content">
+            <h2>{{ writer.name }}</h2>
+            <div class="writer-bio">{{ writer.bio }}</div> 
+        </div>
+            <div class="writer-detail-articles-container">
+            <div class="writer-articles">
+                <h3>Articles:</h3>
+                {% for article in articles %}
+                {% include 'webApp/article_card.html' with article=article %}
+                {% endfor %}
+           
+        </div>
+</div>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,14 @@
+
+<div class="article-outer-container">
+
+
+    <h6>{{ article.headline }}</h6>
+
+    {% for writer in article.article_writers_list %}
+            <div class="writer-individual writer-num{{ forloop.counter }}">{{ writer.writer.name }} - Role: {{ writer.role }}</div>
+        {% endfor %}
+  <a href='{% url "article_detail" article.slug %}'>      
+    <p>{{ article.content|truncatechars:100 }}</p>
+</a>
+    
+</div>

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+
+<div class="search-result-page">
+    <div class="search-page-container">
+<h3 class="result-heading">Search Results</h3>
+{% for result in results %}
+    <div class="result-content">
+        <!-- <h2><a href="{{ result.object.get_absolute_url }}">{{ result.object }}</a></h2> -->
+      
+        <h4><a href="{% url  'article_detail' result.slug %}">{{ result.object }}</a></h4> 
+         <p>{{ result.content|truncatechars:150 }}</p>
+    </div>
+{% empty %}
+    <p>No results found.</p>
+{% endfor %}
+
+</div></div>
+{% endblock %}
